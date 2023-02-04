@@ -50,7 +50,6 @@ class Rectangle:
             return 0
         return self.__width * 2 + self.__height * 2
 
-    # don't understand this last part
     def __str__(self) -> str:
         """presents a diagram of the rectangle defined for an object"""
         if self.__width == 0 or self.__height == 0:
@@ -62,6 +61,9 @@ class Rectangle:
             if column < self.__height - 1:
                 rectangle += "\n"
         return rectangle
+
+    # def __repr__(self):
+    #     return f"Rectangle({self.__width}, {self.__height})"
 
 
 my_rectangle = Rectangle(2, 4)
