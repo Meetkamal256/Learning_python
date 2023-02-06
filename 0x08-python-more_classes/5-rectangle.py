@@ -48,6 +48,9 @@ class Rectangle:
             return 0
         return self.__height * 2 + self.__width * 2
 
+    def __repr__(self):
+        return f"Rectangle({self.__width}, {self.__height})"
+    
     def __del__(self):
         """prints a message for every object that is deleted"""
         print("Bye rectangle...")
