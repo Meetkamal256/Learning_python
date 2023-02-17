@@ -1,0 +1,38 @@
+test cases for 0-add_integer
+============================
+
+# Importing module
+    >>> add_integer = __import__('0-add_integer').add_integer
+
+test cases:
+# passing 2 integers
+    >>> add_integer(1, 2)
+    3
+
+# passing an integer and a float
+    >>> add_integer(100, -25)
+    75
+
+# passing a float and integer
+    >>> add_integer(-100.68, -100)
+    -200
+
+# passing a float and a float
+    >>> add_integer(50.9, 100.6)
+    150
+
+# passing a string and an integer
+    >>> add_integer("a", 12)
+    Traceback (most recent call last):
+    TypeError: a must be an integer
+
+    >>> add_integer(20, z)
+    Traceback (most recent call last):
+    NameError: name 'z' is not defined
+
+# passing an integer and a string
+    >>> add_integer(12, "welcome")
+    Traceback (most recent call last):
+    TypeError: b must be an integer
+
+

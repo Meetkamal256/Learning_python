@@ -1,5 +1,6 @@
 class Rectangle:
     """define a class rectangle"""
+
     def __init__(self, width, height):
         """initialize a private instance attribute
         Args:
