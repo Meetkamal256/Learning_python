@@ -5,7 +5,7 @@ and returns the number of characters written:
 """
 def write_file(filename="", text=""):
     with open(filename, mode="w", encoding="utf-8") as f:
-        return f.write(text)
+        return f.write(text)z
     
     
 nb_characters = write_file("my_first_file.txt", "This School is so cool!\n")

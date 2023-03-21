@@ -1,7 +1,7 @@
 try:
-    from models.base import Base
-except ModuleNotFoundError:
     Base = __import__('base').Base
+except ModuleNotFoundError:
+    from models.base import Base
 
 
 class Rectangle(Base):
@@ -90,7 +90,7 @@ class Rectangle(Base):
         """Defines a format for the string representation of the class"""
         return f"[Rectangle] ({self.id}) {self.__x}/{self.__y} - / {self.__width}/{self.__height}"
 
-    def update(self, *args):
+    def update(self, *args, **kwargs):
         """Assigns an argument to each attribute"""
 
         if args and len(args) != 0:
@@ -111,116 +111,26 @@ class Rectangle(Base):
                     self.y = arg
                 a += 1
 
-        # elif kwargs and len(kwargs) != 0:
-        #     for k, v in kwargs.items():
-        #         if k == "id":
-        #             if v is None:
-        #                 self.__init__(self.width, self.height, self.x, self.y)
-        #             else:
-        #                 self.id = v
-        #         elif k == "width":
-        #             self.width = v
-        #         elif k == "height":
-        #             self.height = v
-        #         elif k == "x":
-        #             self.x = v
-        #         elif k == "y":
-        #             self.y = v
+        elif kwargs and len(kwargs) != 0:
+            for k, v in kwargs.items():
+                if k == "id":
+                    if v != 0:
+                        self.__init__(self.width, self.height, self.x, self.y)
+                    else:
+                        self.id = v
+                elif k == "width":
+                    self.width = v
+                elif k == "height":
+                    self.height = v
+                elif k == "x":
+                    self.x = v
+                elif k == "y":
+                    self.y = v
 
-# b1 = Base()
-# print(b1.id)
+    def to_dictionary(self):
+        """Returns the dictionary representation of a Rectangle"""
 
-# b2 = Base()
-# print(b2.id)
-
-# b3 = Base()
-# print(b3.id)
-
-# b4 = Base(12)
-# print(b4.id)
-
-# b5 = Base()
-# print(b5.id)
-# print("-----------")
-
-# r1 = Rectangle(10, 2)
-# print(r1.id)
-
-# r2 = Rectangle(2, 10)
-# print(r2.id)
-
-# r3 = Rectangle(10, 2, 0, 0, 12)
-# print(r3.id)
-# print("-------------")
-
-# try:
-#     Rectangle(10, "2")
-# except Exception as e:
-#     print("[{}] {}".format(e.__class__.__name__, e))
-
-# try:
-#     r = Rectangle(10, 2)
-#     r.width = -10
-# except Exception as e:
-#     print("[{}] {}".format(e.__class__.__name__, e))
-
-# try:
-#     r = Rectangle(10, 2)
-#     r.x = {}
-# except Exception as e:
-#     print("[{}] {}".format(e.__class__.__name__, e))
-
-# try:
-#     Rectangle(10, 2, 3, -1)
-# except Exception as e:
-#     print("[{}] {}".format(e.__class__.__name__, e))
-# print("-----------------------------")
-
-# r1 = Rectangle(3, 2)
-# print(r1.area())
-
-# r2 = Rectangle(2, 10)
-# print(r2.area())
-
-# r3 = Rectangle(8, 7, 0, 0, 12)
-# print(r3.area())
-# print("----------------")
-
-# r1 = Rectangle(4, 6)
-# r1.display()
-# print("---")
-
-# r1 = Rectangle(4, 6, 2, 1, 12)
-# print(r1)
-
-# r2 = Rectangle(5, 5, 1)
-# print(r2)
-# print("------------------")
-
-# r1 = Rectangle(2, 3, 2, 2)
-# r1.display()
-
-# print("---")
-
-# r2 = Rectangle(3, 2, 1, 0)
-# r2.display()
-# print("--------------------")
-
-
-# r1 = Rectangle(10, 10, 10, 10)
-# print(r1)
-
-# r1.update(89)
-# print(r1)
-
-# r1.update(89, 2)
-# print(r1)
-
-# r1.update(89, 2, 3)
-# print(r1)
-
-# r1.update(89, 2, 3, 4)
-# print(r1)
-
-# r1.update(89, 2, 3, 4, 5)
-# print(r1)
+        obj_dictionary = {'id': self.id, 'width': self.__width,
+                          'height': self.__height, 'x': self.__x,
+                          'y': self.__y}
+        return obj_dictionary

@@ -1,3 +1,6 @@
+import json
+
+
 class Base:
     """define a class"""
     __nb_objects = 0
@@ -9,19 +12,42 @@ class Base:
             id = Base.__nb_objects
         self.id = id
 
+    @staticmethod
+    def to_json_string(list_dictionaries):
+        """returns the json representation of a list of dictionaries"""
+        if list_dictionaries is None or len(list_dictionaries) == 0:
+            return "[]"
+        else:
+            return json.dumps(list_dictionaries)
 
-# b1 = Base()
-# print(b1.id)
+    @classmethod
+    def save_to_file(cls, list_objs):
+        empty_list = []
+        if list_objs == None:
+            return "[]"
+        else:
+            for obj in list_objs:
+                empty_list.append(obj.to_dictionary())
 
-# b2 = Base()
-# print(b2.id)
+        json_string = cls.to_json_string(empty_list)
+        with open(cls.__name__ + ".json", "w") as myFile:
+            myFile.write(json_string)
 
-# b3 = Base()
-# print(b3.id)
+    @staticmethod
+    def from_json_string(json_string):
+        """returns the list of the JSON string representation"""
+        if json_string is None or len(json_string) == 0:
+            return []
+        return json.loads(json_string)
 
-# b4 = Base(12)
-# print(b4.id)
+    @classmethod
+    def create(cls, **dictionary):
+        """Returns an instance with all attributes already set"""
+        # create an instance of an existing class
+        if cls.__name__ == 'Rectangle':
+            dummy = cls(1, 1)
+        elif cls.__name__ == 'Square':
+            dummy = cls(1)
 
-# b5 = Base()
-# print(b5.id)
-    
+        dummy.update(**dictionary)
+        return dummy
