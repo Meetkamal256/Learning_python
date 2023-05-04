@@ -1,7 +1,7 @@
+#!/usr/bin/python3
 """
 a script that lists all cities from the database hbtn_0e_4_usa
 """
-#!/usr/bin/bash
 import MySQLdb
 import sys
 

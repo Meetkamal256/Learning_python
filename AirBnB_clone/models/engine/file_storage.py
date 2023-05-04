@@ -20,55 +20,52 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
-    def all(self) -> dict:
+    def all(self, cls=None):
         """
-        Return all the objects saved in the file
-        :return: dict
+        Returns a dictionary of every object stored.
+        If cls is specified, only objects of that class are returned.
         """
-        return self.__objects
+        if cls is None:
+            # If no class is specified, return the entire objects dictionary.
+            return self.__objects
+        else:
+            # If a class is specified, create a new dictionary to hold objects of that class.
+            class_name = cls.__name__
+            objects_of_class = {}
+            # Loop through every key-value pair in the objects dictionary.
+            for key, value in self.__objects.items():
+                # Check if the value's class name matches the specified class name.
+                if class_name == value.__class__.__name__:
+                    # If it does, add the key-value pair to the new dictionary.
+                    objects_of_class[key] = value
+                    # Return the new dictionary containing objects of the specified class.
+                    return objects_of_class
 
     def new(self, obj):
         """
-        adding new instances of a model class to the storage. It does so by adding the object to the __objects dictionary, with the key as the name of the class concatenated with the id of the object.
-        This way, the object can later be retrieved using the all method and can also be saved to the JSON file using the save method.
+        The new(obj) method adds a new object to the __objects dictionary.
         """
         self.__objects[obj.__class__.__name__ + '.' + str(obj.id)] = obj
 
     def save(self):
         """
-        The method opens the file located at __file_path in write mode.
-        then uses the dump function from the json module to write the to_dict representation of each object in the __objects dictionary to the file.After all the objects have been written to the file, the method simply returns, and the file is closed.
+        Serializes __objects to the JSON file __file_path
         """
-        with open(self.__file_path, mode='w', encoding='utf-8') as f_write:
-            # opens file in a specified path in write mode
-            serialized_objects = {}
-            for key, value in self.__objects.items():
-                # Convert each object to a dictionary using its to_dict method,
-                # for each key-value pair, it converts the value object to a
-                # dictionary using the to_dict() method, and stores it as a
-                # value in the serialized_objects dictionary, using the key as its key.
-                serialized_objects[key] = value.to_dict()
-                # Write the serialized objects to the file in JSON format
-            dump(serialized_objects, f_write)
-
-        """
-            The key-value pairs in the dictionary represent the objects stored in the FileStorage's __objects attribute. The keys are a concatenation of the object's class name and its id, which is used to uniquely identify the object. The values are the objects themselves, but transformed into a dictionary using the to_dict() method defined in the BaseModel class.
-            In the save method, this dictionary is passed to the dump method from the json module, which serializes the dictionary to a JSON formatted string. This string is then written to the file specified by the __file_path attribute using a context manager.
-        """
+        new_dict = {}
+        for key, value in self.__objects.items():
+            new_dict[key] = value.to_dict()
+        with open(self.__file_path, mode="w", encoding="utf-8") as file:
+            dump(new_dict, file)
 
     def reload(self):
         """
-        retrieves data from a file self.__file_path
+        Deserializes the JSON file __file_path to __objects
         """
-        if path.exists(self.__file_path):
-            # This line checks if the file exists in the specified file path. If it does, then the method reads the data from the file. If it doesn't exist, the method returns without doing anything.
-            with open(self.__file_path, mode='r', encoding='utf-8') as f_read:
-                # This line opens the file specified in self.__file_path in read-only mode, with UTF-8 encoding, and assigns the file object to the variable f_read. The with statement ensures that the file is automatically closed when the block is exited.
-                data_read = load(f_read)
-                # This line loads the data from the file object f_read, which is assumed to contain a JSON string, and returns a dictionary. The load() function is from the json module in Python, and it deserializes a JSON string into a Python object.
-                for _, value in data_read.items():
-                    # This line iterates over the dictionary data_read, which contains key-value pairs representing each object that was saved to the file. Since we only care about the values, we use an underscore (_) to indicate that we are ignoring the keys
-                    class_name = value.pop('__class__', None)
-                    if class_name:
-                        obj = eval(class_name)(**value)
-                        self.new(obj)
+        try:
+            with open(self.__file_path, mode="r", encoding="utf-8") as file:
+                obj_dict = load(file)
+            for key, value in obj_dict.items():
+                class_name = value["__class__"]
+                self.__objects[key] = eval(class_name + "(**value)")
+        except FileNotFoundError:
+            pass

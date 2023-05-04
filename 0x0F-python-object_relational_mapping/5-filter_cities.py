@@ -16,7 +16,7 @@ db = MySQLdb.connect(host='localhost', port=3306,
 """create a cursor object to execute queries in the database"""
 cursor = db.cursor()
 cursor.execute(
-    "SELECT cities.id, states.name, cities.name\
+    "SELECT cities.name\
         FROM cities\
             INNER JOIN states\
                 ON states.id=cities.state_id\

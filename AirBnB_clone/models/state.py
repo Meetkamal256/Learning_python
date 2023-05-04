@@ -4,5 +4,5 @@ from models.base_model import BaseModel
 
 
 class State(BaseModel):
-    def __init__(self, name=""):
-        self.name = name
+    """class State which inherits from BaseModel"""
+    name = ""

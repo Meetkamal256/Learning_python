@@ -5,6 +5,12 @@ FileStorage module
 from json import dump, load
 from os import path
 from models.base_model import BaseModel
+from models.user import User
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.state import State
+from models.review import Review
 
 
 class FileStorage:
@@ -50,25 +56,6 @@ class FileStorage:
             In the save method, this dictionary is passed to the dump method from the json module, which serializes the dictionary to a JSON formatted string. This string is then written to the file specified by the __file_path attribute using a context manager.
         """
 
-    def classes(self):
-        """Returns a dictionary of valid classes and their references"""
-        from models.base_model import BaseModel
-        from models.user import User
-        from models.state import State
-        from models.city import City
-        from models.amenity import Amenity
-        from models.place import Place
-        from models.review import Review
-
-        classes = {"BaseModel": BaseModel,
-                   "User": User,
-                   "State": State,
-                   "City": City,
-                   "Amenity": Amenity,
-                   "Place": Place,
-                   "Review": Review}
-        return classes
-
     def reload(self):
         """
         retrieves data from a file self.__file_path
@@ -85,41 +72,3 @@ class FileStorage:
                     if class_name:
                         obj = eval(class_name)(**value)
                         self.new(obj)
-
-    def attributes(self):
-        """Returns the valid attributes and their types for classname"""
-        attributes = {
-            "BaseModel":
-                     {"id": str,
-                      "created_at": datetime.datetime,
-                      "updated_at": datetime.datetime},
-            "User":
-                     {"email": str,
-                      "password": str,
-                      "first_name": str,
-                      "last_name": str},
-            "State":
-                     {"name": str},
-            "City":
-                     {"state_id": str,
-                      "name": str},
-            "Amenity":
-                     {"name": str},
-            "Place":
-                     {"city_id": str,
-                      "user_id": str,
-                      "name": str,
-                      "description": str,
-                      "number_rooms": int,
-                      "number_bathrooms": int,
-                      "max_guest": int,
-                      "price_by_night": int,
-                      "latitude": float,
-                      "longitude": float,
-                      "amenity_ids": list},
-            "Review":
-            {"place_id": str,
-                         "user_id": str,
-                         "text": str}
-        }
-        return attributes

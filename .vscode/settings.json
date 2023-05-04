@@ -1,3 +1,18 @@
 {
-    "window.autoDetectColorScheme": false
+    "window.autoDetectColorScheme": false,
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "mysqlconnection",
+            "database": "new_db",
+            "username": "root",
+            "password": "Kamal256@"
+        }
+    ]
 }

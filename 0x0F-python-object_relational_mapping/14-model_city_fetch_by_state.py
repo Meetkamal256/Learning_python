@@ -17,7 +17,7 @@ session = sessionmaker(bind=engine)
 session = session()
 query = session.query(City, State).join(State)
 results = query.all()
-for city, state in results:
-    print('{}: ({}) {}'.format(state.name, city.id, city.name))
+for City, State in results:
+    print('{}: ({}) {}'.format(State.name, City.id, City.name))
 session.commit()
 session.close()

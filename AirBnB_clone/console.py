@@ -5,14 +5,19 @@ contains entry point of our command interpreter
 import cmd
 import sys
 import models
-from models import BaseModel
+from typing import List
+from models.user import User
+from models.city import City
+from models.state import State
+from models.place import Place
+from models.review import Review
+from models.amenity import Amenity
 
 
 class HBNBCommand(cmd.Cmd):
     """command interpreter class"""
     prompt = ("(hbnb) ")
     __classes = [
-        "BaseModel",
         "User",
         "Amenity",
         "City",
@@ -33,19 +38,30 @@ class HBNBCommand(cmd.Cmd):
         """empty args should not excecute anything"""
         pass
 
-    def do_create(self, args):
+    def do_create(self, args: List[str]):
         """creates a new instance of BaseModel saves it to json file and prints the id"""
-        args = args.split()
+        args = args.split()  # ['User'] -> User()
         if not args:  # checks if class name is missing
             print("**class name missing**")
             return
         # check if class name doesn't exist in the program
-        elif args not in HBNBCommand.__classes:
+        elif args[0] not in HBNBCommand.__classes:
             print("**class name doesn't exist**")
         else:
-            print(BaseModel)
             # create new instance of baseModel
-            new_instance = BaseModel()
+            new_instance = eval(args[0]+'()')
+            for arg in args[1:]:
+                if '=' in arg:
+                    key, value = arg.split('=')
+                    value = value.replace('_', ' ')
+                    try:
+                        value = int(value)
+                    except ValueError:
+                        try:
+                            value = float(value)
+                        except ValueError:
+                            value = value.strip('"').replace('\\"', '"')
+                    setattr(new_instance, key, value)
             # save it to json file
             models.storage.save()
             # print id of new_instance
@@ -119,7 +135,7 @@ class HBNBCommand(cmd.Cmd):
                 print("**class doesn't exist**")
             else:
                 print(my_list)
-
+    
     def do_update(self, args):
         """
         updates an instance based on the class name and id by adding or updating attribute then save changes into json file

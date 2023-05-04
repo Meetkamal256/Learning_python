@@ -15,9 +15,9 @@ if __name__ == '__main__':
     session = sessionmaker(bind=engine)
     session = session()
     # creates a new query object that selects all records from the state table then adds a filter to the query that only selects records where the name column contains the letter a
-    states = session.query(State).filter(
-        State.name.like('%a%')).order_by(State.id)
+    results = session.query(State).filter(
+        State.name.like('%n%')).order_by(State.id)
     # iterates over the result of the query and prints each record's id and name columns
-    for state in states:
+    for state in results:
         print('{}:{}'.format(state.id, state.name))
         session.close()
