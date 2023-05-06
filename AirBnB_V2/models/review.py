@@ -9,7 +9,7 @@ from os import getenv
 st = getenv("HBNB_TYPE_STORAGE")
 
 class Review(BaseModel, Base):
-    """ Review classto store review information """
+    """ Review class to store review information """
 
     __tablename__ = "reviews"
     if st == "db":
