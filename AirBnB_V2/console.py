@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 """
 contains entry point of our command interpreter
 """
@@ -25,16 +25,16 @@ class HBNBCommand(cmd.Cmd):
         "Review",
         "State"
     ]
-
+    
     def do_quit(self, args):
         """quit command to exit the program"""
         return True
-
+    
     def do_EOF(self, args):
         """EOF command to exit the program"""
         return True
-
-    def emptyargs(self):
+    
+    def emptyline(self):
         """empty args should not excecute anything"""
         pass
 
