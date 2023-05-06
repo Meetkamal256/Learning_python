@@ -1,13 +1,16 @@
 #!/usr/bin/python3
 import json
+
 """
 a function that creates an Object from a “JSON file”
 """
+
+
 def load_from_json_file(filename):
     with open(filename, mode="r", encoding="utf-8") as f:
         return json.load(f)
-    
-    
+
+
 filename = "my_list.json"
 my_list = load_from_json_file(filename)
 print(my_list)
@@ -33,4 +36,3 @@ try:
     print(type(my_fake))
 except Exception as e:
     print("[{}] {}".format(e.__class__.__name__, e))
-

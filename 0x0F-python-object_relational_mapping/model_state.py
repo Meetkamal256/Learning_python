@@ -8,7 +8,7 @@ Base = declarative_base()
 
 class State(Base):
     """State object"""
-    __tablename__ = 'states'
-    id = Column(Integer, Sequence('my_sequence'),
-                primary_key=True, nullable=False)
+
+    __tablename__ = "states"
+    id = Column(Integer, Sequence("my_sequence"), primary_key=True, nullable=False)
     name = Column(String(128), nullable=False)

@@ -3,6 +3,7 @@
 
 class Rectangle:
     """this represents a rectangle"""
+
     number_of_instances = 0
 
     def __init__(self, width=0, height=0):
@@ -53,7 +54,7 @@ class Rectangle:
     def perimeter(self):
         """Returns the perimeter of the rectangle"""
         if self.__width == 0 or self.__height == 0:
-            return (0)
+            return 0
         return (self.__width * 2) + (self.__height * 2)
 
     # def __str__(self) -> str:

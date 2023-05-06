@@ -7,11 +7,15 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sys import argv
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     state_name = argv[4]
     # create an engine to connect to mysql server
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
-        argv[1], argv[2], argv[3], argv[4]), pool_pre_ping=True)
+    engine = create_engine(
+        "mysql+mysqldb://{}:{}@localhost:3306/{}".format(
+            argv[1], argv[2], argv[3], argv[4]
+        ),
+        pool_pre_ping=True,
+    )
     # create session
     session = sessionmaker(bind=engine)
     session = session()

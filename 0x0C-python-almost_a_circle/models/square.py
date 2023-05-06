@@ -1,5 +1,5 @@
 try:
-    Rectangle = __import__('rectangle').Rectangle
+    Rectangle = __import__("rectangle").Rectangle
 except ModuleNotFoundError:
     from models.rectangle import Rectangle
 
@@ -25,9 +25,9 @@ class Square(Rectangle):
     @size.setter
     def size(self, value):
         if not isinstance(value, int):
-            raise TypeError('size must be an integer')
+            raise TypeError("size must be an integer")
         if value < 0:
-            raise ValueError('size must be >= 0')
+            raise ValueError("size must be >= 0")
         self.__size = value
 
     def update(self, *args, **kwargs):
@@ -45,7 +45,7 @@ class Square(Rectangle):
                 self.y = args[3]
         else:
             for key, value in kwargs.items():
-                if key == 'id':
+                if key == "id":
                     if type(value) != int and value is not None:
                         raise TypeError("id must be an integer")
                     self.id = value
@@ -55,9 +55,7 @@ class Square(Rectangle):
                     self.x = value
                 if key == "y":
                     self.y = value
-    
+
     def to_dictionary(self):
         """converts the class to a dictionary"""
-        return {'id': self.id, 'size': self.__size, 'x': self.x, 'y': self.y}
-    
-                    
+        return {"id": self.id, "size": self.__size, "x": self.x, "y": self.y}

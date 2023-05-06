@@ -18,7 +18,3 @@ print("current Directory:", os.getcwd())
 os.chdir("..")
 print("current Directory:", os.getcwd())
 os.rmdir("mydir")
-
-
-
-

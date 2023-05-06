@@ -5,7 +5,8 @@ from model_city import City
 
 # create engine and session
 engine = create_engine(
-    'mysql+mysqldb://kamal:Kamal256$@localhost:3306/hbtn_0e_14_usa', echo=True)
+    "mysql+mysqldb://kamal:Kamal256$@localhost:3306/hbtn_0e_14_usa", echo=True
+)
 Session = sessionmaker(bind=engine)
 session = Session()
 

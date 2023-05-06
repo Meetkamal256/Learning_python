@@ -12,10 +12,13 @@ mysql_password = sys.argv[2]
 db_name = sys.argv[3]
 
 if __name__ == "__main__":
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
-        mysql_user, mysql_password, db_name, pool_pre_ping=True))
-   # engine = create_engine(
-   #     'mysql+mysqldb://kamal:Kamal256$@localhost:3306/hbtn_0e_6_usa', pool_pre_ping=True)
+    engine = create_engine(
+        "mysql+mysqldb://{}:{}@localhost:3306/{}".format(
+            mysql_user, mysql_password, db_name, pool_pre_ping=True
+        )
+    )
+    # engine = create_engine(
+    #     'mysql+mysqldb://kamal:Kamal256$@localhost:3306/hbtn_0e_6_usa', pool_pre_ping=True)
     session = sessionmaker(bind=engine)
     session = session()
     query = session.query(State).order_by(State.id)

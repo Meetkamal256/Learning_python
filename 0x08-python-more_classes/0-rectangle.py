@@ -1,5 +1,6 @@
 class Rectangle:
     """Define a class"""
+
     pass
 
 

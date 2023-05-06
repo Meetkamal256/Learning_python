@@ -1,15 +1,16 @@
 #!/usr/bin/python3
 """this module has one function that adds up two integers"""
 
+
 def add_integer(a, b=98):
     """returns the sum of two integers or floats as integers
     Args:
         a: first argument
         b: second argument
-        
+
     Returns:
         sum of the two arguments
-    
+
     Raises:
         TypeError: if either of the arguments is not an integer or a float
     """
@@ -32,7 +33,7 @@ def add_integer(a, b=98):
 #     print(add_integer(None))
 # except Exception as e:
 #     print(e)
-    
+
 # try:
 #     print(add_integer())
 # except Exception as e:

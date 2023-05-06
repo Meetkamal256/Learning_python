@@ -31,13 +31,14 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            models.storage.new(self)
+        models.storage.new(self)
 
     def __str__(self):
         """
         returns a string representation of our object
         """
-        return '[{}] ({}) {}'.format(self.__class__.__name__, self.id, self.__dict__)
+        return '[{}] ({}) {}'.format(
+            self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
         """
@@ -45,12 +46,18 @@ class BaseModel:
         """
         self.updated_at = datetime.now()
         models.storage.save()
-
-    def to_dict(self):
+      
+      
+      
+      
+      
+      def to_dict(self):
         """
         returns a dictionary containing all keys/values of __dict__ of the instance
         """
-        my_dict = self.__dict__.copy()  # creates a new dictionary with a copy of the instance's __dict__ attribute. The __dict__ attribute contains all the instance's attributes and their values.
+
+        # creates a new dictionary with a copy of the instance's __dict__ attribute. The __dict__ attribute contains all the instance's attributes and their values.
+        my_dict = self.__dict__.copy()
         my_dict.update({
             "__class__": self.__class__.__name__,
             "created_at": self.created_at.isoformat(),

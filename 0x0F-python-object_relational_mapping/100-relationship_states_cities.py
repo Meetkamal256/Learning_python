@@ -15,7 +15,7 @@ if __name__ == "__main__":
     from the database. Map all cities to their respective states.
     """
 
-    db_uri = 'mysql+mysqldb://kamal:Kamal256$@localhost:3306/hbtn_0e_6_usa'
+    db_uri = "mysql+mysqldb://kamal:Kamal256$@localhost:3306/hbtn_0e_6_usa"
     engine = create_engine(db_uri)
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)

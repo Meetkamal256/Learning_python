@@ -1,6 +1,6 @@
 import os
 
-with open("mydata.txt2", mode="w", encoding= "utf-8") as myFile:
+with open("mydata.txt2", mode="w", encoding="utf-8") as myFile:
     myFile.write("Some random text\nMore random text\nAnd some more")
 
 with open("mydata.txt2", encoding="utf-8") as myFile:
@@ -15,7 +15,6 @@ with open("mydata.txt2", encoding="utf-8") as myFile:
         # split()
         word_list = line.split()
         # len() find number of words available inside each len
-
 
         # loop and count the characters in the list
 

@@ -6,11 +6,7 @@ def islower(c):
         return False
 
 
-print(islower('z'))
-print(islower('Z'))
-print(islower('3'))
-print(islower('F'))
-
-
-
-
+print(islower("z"))
+print(islower("Z"))
+print(islower("3"))
+print(islower("F"))
