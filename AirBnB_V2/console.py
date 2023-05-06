@@ -1,6 +1,7 @@
 #!/usr/bin/python3
+
 """
-contains entry point of our command interpreter
+Contain an entry point of our command interpreter
 """
 import cmd
 import sys
@@ -33,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, args):
         """EOF command to exit the program"""
         return True
-    
+
     def emptyline(self):
         """empty args should not excecute anything"""
         pass
