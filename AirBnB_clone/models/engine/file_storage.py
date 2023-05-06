@@ -17,7 +17,6 @@ class FileStorage:
     """
     the storage class to store an instance of any model
     """
-
     __file_path = "file.json"
     __objects = {}
 
@@ -46,7 +45,7 @@ class FileStorage:
         """
         The new(obj) method adds a new object to the __objects dictionary.
         """
-        self.__objects[obj.__class__.__name__ + "." + str(obj.id)] = obj
+        self.__objects[obj.__class__.__name__ + '.' + str(obj.id)] = obj
 
     def save(self):
         """
