@@ -1,7 +1,9 @@
 #!/usr/bin/bash
 
-HBNB_MYSQL_USER=hbnb_dev \
-HBNB_MYSQL_PWD=Kamal256$ \
-HBNB_MYSQL_HOST=localhost \
-HBNB_MYSQL_DB=hbnb_dev_db \
-HBNB_TYPE_STORAGE=db
+export HBNB_MYSQL_USER=hbnb_dev
+export HBNB_MYSQL_PWD=Kamal256$
+export HBNB_MYSQL_HOST=localhost
+export HBNB_MYSQL_DB=hbnb_dev_db
+export HBNB_TYPE_STORAGE=db
+
+echo 'create State name="California"' | ./console.py
