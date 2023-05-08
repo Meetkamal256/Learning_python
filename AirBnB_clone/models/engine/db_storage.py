@@ -19,8 +19,8 @@ class DBStorage:
         url = "mysql+mysqldb://{}:{}@{}:3306/{}".format(
             getenv("HBNB_MYSQL_USER"),
             getenv("HBNB_MYSQL_PWD"),
-            getenv("HBNB_MYSQL_HOST"),
-            getenv("HBNB_MYSQL_DB")
+            "localhost",
+            getenv("HBNB_MYSQL_DB"),
         )
         self.__engine = create_engine(url, pool_pre_ping=True, echo=False)
 
@@ -73,8 +73,7 @@ class DBStorage:
 
         Base.metadata.create_all(self.__engine)
 
-        session = sessionmaker(
-            bind=self.__engine, expire_on_commit=False)
+        session = sessionmaker(bind=self.__engine, expire_on_commit=False)
 
         self.__session = scoped_session(session)()
 

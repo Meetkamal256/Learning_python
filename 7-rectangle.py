@@ -9,7 +9,7 @@ class Rectangle:
         Args:
             width: represents the width of the rectangle
             height: represents the height of the rectangle
-        Raises:
+            Raises:
             TypeError: if size is not integer
             ValueError: if size is less than zero
         """
