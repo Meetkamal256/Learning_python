@@ -25,19 +25,19 @@ class HBNBCommand(cmd.Cmd):
         "Review",
         "State"
     ]
-    
+
     def do_quit(self, args):
         """quit command to exit the program"""
         return True
-    
+
     def do_EOF(self, args):
         """EOF command to exit the program"""
         return True
-    
+
     def emptyargs(self):
         """empty args should not excecute anything"""
         pass
-    
+
     def do_create(self, args: List[str]):
         """creates a new instance of BaseModel saves it to json file and prints the id"""
         args = args.split()  # ['User'] -> User()
@@ -63,8 +63,7 @@ class HBNBCommand(cmd.Cmd):
                             value = value.strip('"').replace('\\"', '"')
                     setattr(new_instance, key, value)
             # save it to json file
-            print(new_instance)
-            new_instance.save()
+            models.storage.save()
             # print id of new_instance
             print(new_instance.id)
 
@@ -129,18 +128,18 @@ class HBNBCommand(cmd.Cmd):
         else:
             for value in my_dict.values():
                 # checks if the class name of the instance matches the argument passed to the all command
-                if value.to_dict()["__class__"] == args[0]:
+                if value.to_dict()["__class__"] == args:
                     # if match is found append the string representation ofthe  object to my_list
                     my_list.append(str(value))
             if not my_list:
                 print("**class doesn't exist**")
             else:
                 print(my_list)
-
+    
     def do_update(self, args):
         """
         updates an instance based on the class name and id by adding or updating attribute then save changes into json file
-        Usage: update <class name> <id> <attribute name> "<attribute value>
+        Usage: update <class name> <id> <attribute name> "<attribute value> 
         """
         args = args.split()
         if len(args) < 1:

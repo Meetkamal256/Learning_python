@@ -17,10 +17,9 @@ class FileStorage:
     """
     the storage class to store an instance of any model
     """
-    
     __file_path = "file.json"
     __objects = {}
-    
+
     def all(self, cls=None):
         """
         Returns a dictionary of every object stored.
@@ -41,13 +40,13 @@ class FileStorage:
                     objects_of_class[key] = value
                     # Return the new dictionary containing objects of the specified class.
                     return objects_of_class
-    
+
     def new(self, obj):
         """
         The new(obj) method adds a new object to the __objects dictionary.
         """
-        self.__objects[obj.__class__.__name__ + "." + str(obj.id)] = obj
-    
+        self.__objects[obj.__class__.__name__ + '.' + str(obj.id)] = obj
+
     def save(self):
         """
         Serializes __objects to the JSON file __file_path
@@ -57,7 +56,7 @@ class FileStorage:
             new_dict[key] = value.to_dict()
         with open(self.__file_path, mode="w", encoding="utf-8") as file:
             dump(new_dict, file)
-    
+
     def reload(self):
         """
         Deserializes the JSON file __file_path to __objects
