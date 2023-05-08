@@ -11,8 +11,9 @@ db_name = sys.argv[3]
 states_name = sys.argv[4]
 
 """connect to MYSQL server"""
-db = MySQLdb.connect(host='localhost', port=3306,
-                     user=mysql_user, password=mysql_password, db=db_name)
+db = MySQLdb.connect(
+    host="localhost", port=3306, user=mysql_user, password=mysql_password, db=db_name
+)
 """create a cursor object to execute queries in the database"""
 cursor = db.cursor()
 cursor.execute(
@@ -20,7 +21,9 @@ cursor.execute(
         FROM cities\
             INNER JOIN states\
                 ON states.id=cities.state_id\
-                    WHERE states.name= %s ORDER BY cities.id ASC", (sys.argv[4],))
+                    WHERE states.name= %s ORDER BY cities.id ASC",
+    (sys.argv[4],),
+)
 rows = cursor.fetchall()
 for row in rows:
     print(row)

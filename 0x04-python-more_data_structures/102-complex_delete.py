@@ -1,5 +1,5 @@
 def complex_delete(a_dictionary, value):
-    """ a function that deletes keys with a specific value in a dictionary."""
+    """a function that deletes keys with a specific value in a dictionary."""
     keys_to_del = []
     for key in a_dictionary:
         if a_dictionary[key] == value:
@@ -10,15 +10,15 @@ def complex_delete(a_dictionary, value):
 
 
 def main():
-    a_dictionary = {'lang': "C", 'track': "Low", 'pref': "C", 'ids': [1, 2, 3]}
-    new_dict = complex_delete(a_dictionary, 'C')
+    a_dictionary = {"lang": "C", "track": "Low", "pref": "C", "ids": [1, 2, 3]}
+    new_dict = complex_delete(a_dictionary, "C")
     print_sorted_dictionary(a_dictionary)
     print("--")
     print_sorted_dictionary(new_dict)
 
     print("--")
     print("--")
-    new_dict = complex_delete(a_dictionary, 'c_is_fun')
+    new_dict = complex_delete(a_dictionary, "c_is_fun")
     print_sorted_dictionary(a_dictionary)
     print("--")
     print_sorted_dictionary(new_dict)

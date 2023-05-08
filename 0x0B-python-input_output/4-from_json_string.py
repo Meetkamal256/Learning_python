@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import json
+
 """
 a function that returns an object (Python data structure) represented by a JSON string
 """

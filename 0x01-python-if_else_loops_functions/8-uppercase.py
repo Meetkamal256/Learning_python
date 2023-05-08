@@ -6,8 +6,6 @@ def uppercase(str):
         print("{}".format(i), end="")
     print()
 
+
 uppercase("zahrah")
 uppercase("Best School 98 Battery street")
-
-
-

@@ -1,5 +1,6 @@
 class Rectangle:
     """class constructor"""
+
     def __init__(self, width=0, height=0):
         """initialize a private instance attribute width"""
         self.__height = height
@@ -40,5 +41,3 @@ def main():
 
 
 main()
-
-

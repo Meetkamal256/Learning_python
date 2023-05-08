@@ -9,6 +9,7 @@ def replace_in_list(my_list, idx, element):
         new_list[idx] = element
         return new_list
 
+
 #
 # def replace_in_list(my_list, idx, element):
 #     if 0 <= idx < len(my_list):

@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """a function that prints a square with the character # """
+
+
 def print_square(size):
     if not isinstance(size, int):
         raise TypeError("size must be an integer")
@@ -11,8 +13,6 @@ def print_square(size):
         for j in range(size):
             print("#", end="")
         print("")
-        
-        
 
 
 # print_square(4)

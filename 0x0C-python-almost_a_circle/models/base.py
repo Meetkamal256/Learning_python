@@ -3,6 +3,7 @@ import json
 
 class Base:
     """define a class"""
+
     __nb_objects = 0
 
     def __init__(self, id=None):
@@ -44,9 +45,9 @@ class Base:
     def create(cls, **dictionary):
         """Returns an instance with all attributes already set"""
         # create an instance of an existing class
-        if cls.__name__ == 'Rectangle':
+        if cls.__name__ == "Rectangle":
             dummy = cls(1, 1)
-        elif cls.__name__ == 'Square':
+        elif cls.__name__ == "Square":
             dummy = cls(1)
 
         dummy.update(**dictionary)

@@ -15,15 +15,17 @@ db_name = sys.argv[3]
 state_name = sys.argv[4]
 
 """connect to the mysql server"""
-db = MySQLdb.connect(host='localhost', port=3306,
-                     user=mysql_user, password=mysql_password, db=db_name)
+db = MySQLdb.connect(
+    host="localhost", port=3306, user=mysql_user, password=mysql_password, db=db_name
+)
 
 """create a cursor object for excecuting SQL queries on the database"""
 cursor = db.cursor()
 
 """excecute SQL query to retrieve all rows in our database"""
 cursor.execute(
-    "SELECT * FROM states WHERE name = '{}' ORDER BY id ASC".format(sys.argv[4]))
+    "SELECT * FROM states WHERE name = '{}' ORDER BY id ASC".format(sys.argv[4])
+)
 
 """retrieves all the rows returned by our queries and stores them in a variable called rows"""
 rows = cursor.fetchall()

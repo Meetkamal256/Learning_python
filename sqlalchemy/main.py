@@ -28,11 +28,17 @@ class Person(Base):
         self.age = age
 
     def __repr__(self):
-        return "({}) {} {} ({}) {}".format(self.ssn, self.first_name, self.last_name, self.gender, self.age)
+        return "({}) {} {} ({}) {}".format(
+            self.ssn, self.first_name, self.last_name, self.gender, self.age
+        )
 
 
-engine = create_engine("mysql+mysqldb://{}:{}@localhost:3306/{}".format(
-    sys.argv[1], sys.argv[2], sys.argv[3]), echo=True)
+engine = create_engine(
+    "mysql+mysqldb://{}:{}@localhost:3306/{}".format(
+        sys.argv[1], sys.argv[2], sys.argv[3]
+    ),
+    echo=True,
+)
 # engine = create_engine(
 #     "mysql+mysqlconnector://kamal:Kamal256$@localhost/hbtn_0e_4_usa",
 #     echo=True
@@ -59,7 +65,6 @@ p4 = Person(93245, "Mubarak", "Muhammad", "f", 28)
 session.add(p4)
 session.commit()
 
-results = session.query(Person).filter(
-    Person.first_name.in_(["Hafiz", "Mubarak"]))
+results = session.query(Person).filter(Person.first_name.in_(["Hafiz", "Mubarak"]))
 for r in results:
     print(r)

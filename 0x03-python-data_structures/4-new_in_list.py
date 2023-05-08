@@ -8,7 +8,7 @@ def new_in_list(my_list, idx, element):
     else:
         new_list[idx] = element
         return new_list
-    
+
 
 def main():
     my_list = [1, 2, 3, 4, 5]

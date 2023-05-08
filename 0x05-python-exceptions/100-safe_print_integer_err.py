@@ -7,11 +7,6 @@ def safe_print_integer_err(value):
     return False
 
 
-
-
-
-
-
 def main():
     value = 89
     has_been_print = safe_print_integer_err(value)

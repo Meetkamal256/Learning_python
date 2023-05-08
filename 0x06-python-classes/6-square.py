@@ -1,6 +1,6 @@
 class Square:
     """Generates a square but still building
-                    builds an instance with a known size
+    builds an instance with a known size
     """
 
     def __init__(self, size=0, position=(0, 0)):
@@ -13,10 +13,14 @@ class Square:
             raise TypeError("size must be an integer")
         elif size < 0:
             raise ValueError("size must be >= 0")
-        if not isinstance(position, tuple) or len(position) != 2 or \
-                not isinstance(position[0], int) or \
-                not isinstance(position[1], int) \
-                or position[0] < 0 or position[1] < 0:
+        if (
+            not isinstance(position, tuple)
+            or len(position) != 2
+            or not isinstance(position[0], int)
+            or not isinstance(position[1], int)
+            or position[0] < 0
+            or position[1] < 0
+        ):
             raise TypeError("position must be a tuple of 2 positive integers")
         else:
             self.__size = size
@@ -27,7 +31,7 @@ class Square:
         Returns:
                         int: the square of the size
         """
-        return self.__size ** 2
+        return self.__size**2
 
     @property
     def size(self):
@@ -63,14 +67,16 @@ class Square:
 
     @position.setter
     def position(self, value):
-        if not isinstance(value, tuple) or len(value) != 2 or \
-                not isinstance(value[0], int) or \
-                not isinstance(value[1], int) \
-                or value[0] < 0 or value[1] < 0:
+        if (
+            not isinstance(value, tuple)
+            or len(value) != 2
+            or not isinstance(value[0], int)
+            or not isinstance(value[1], int)
+            or value[0] < 0
+            or value[1] < 0
+        ):
             raise TypeError("position must be a tuple of 2 positive integers")
         self.__position = valuetouch
-
-
 
 
 my_square_1 = Square(3)

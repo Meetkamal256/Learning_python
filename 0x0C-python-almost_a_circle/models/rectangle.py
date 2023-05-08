@@ -1,5 +1,5 @@
 try:
-    Base = __import__('base').Base
+    Base = __import__("base").Base
 except ModuleNotFoundError:
     from models.base import Base
 
@@ -57,7 +57,7 @@ class Rectangle(Base):
 
     @x.setter
     def x(self, value):
-        if (type(value) is not int):
+        if type(value) is not int:
             raise TypeError("x must be an integer")
         elif value < 0:
             raise ValueError("x must be >= 0")
@@ -65,7 +65,7 @@ class Rectangle(Base):
 
     @x.setter
     def y(self, value):
-        if (type(value) is not int):
+        if type(value) is not int:
             raise TypeError("y must be an integer")
         elif value < 0:
             raise ValueError("y must be >= 0")
@@ -76,7 +76,7 @@ class Rectangle(Base):
         return self.__width * self.__height
 
     def display(self):
-        """Displays the rectangle using # """
+        """Displays the rectangle using #"""
         for y in range(self.y):
             print("")
         for column in range(self.__height):
@@ -130,7 +130,11 @@ class Rectangle(Base):
     def to_dictionary(self):
         """Returns the dictionary representation of a Rectangle"""
 
-        obj_dictionary = {'id': self.id, 'width': self.__width,
-                          'height': self.__height, 'x': self.__x,
-                          'y': self.__y}
+        obj_dictionary = {
+            "id": self.id,
+            "width": self.__width,
+            "height": self.__height,
+            "x": self.__x,
+            "y": self.__y,
+        }
         return obj_dictionary
