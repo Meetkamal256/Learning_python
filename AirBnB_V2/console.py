@@ -5,7 +5,7 @@ Contain an entry point of our command interpreter
 """
 import cmd
 import sys
-from models.engine.file_storage import storage
+import models
 from typing import List
 from models.user import User
 from models.city import City
@@ -80,7 +80,7 @@ class HBNBCommand(cmd.Cmd):
             return
         else:
             # This args retrieves a dictionary of all instances of all classes stored in a JSON file using the all() method of the storage module
-            objects = storage.all()
+            objects = models.storage.all()
             # creates a key to look up the instance in the object dictionary
             key = "{}.{}".format(args[0], args[1])
             if key not in objects:
@@ -105,18 +105,18 @@ class HBNBCommand(cmd.Cmd):
             return
         else:
             # using the all() method of the storage module to retrieve a dictionary of all objects stored in json file
-            objects = storage.all()
+            objects = models.storage.all()
             key = "{}.{}".format(args[0], args[1])
             if key not in objects:
                 print("**no instance found**")
                 return
             del objects[key]  # delete the instance from the dictionary
-            storage.save()  # save changes to the json file
-
+            models.storage.save()  # save changes to the json file
+    
     def do_all(self, args):
         """prints string representation of objects"""
         my_dict = (
-            storage.all()
+            models.storage.all()
         )  # retrieves all objects currently stored in the storage dictionary and assigns them to the my_dict variable.
         args = args.split()
         my_list = []
@@ -134,7 +134,7 @@ class HBNBCommand(cmd.Cmd):
                 print("**class doesn't exist**")
             else:
                 print(my_list)
-
+    
     def do_update(self, args):
         """
         updates an instance based on the class name and id by adding or updating attribute then save changes into json file
@@ -157,14 +157,14 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
         # create a key to search for instance in dictionary
         key = args[0] + "." + args[1]
-        if key not in storage.all().keys():
+        if key not in models.storage.all().keys():
             print("** no instance found **")
             return
         # get the instance from the dictionary using our key
-        instance = storage.all()[key]
+        instance = models.storage.all()[key]
         # set the attribute value for the instance
         setattr(instance, args[2], args[3])
-        storage.save()  # save changes to json file
+        models.storage.save()  # save changes to json file
 
 
 if __name__ == "__main__":

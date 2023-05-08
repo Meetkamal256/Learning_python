@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 """
 contains entry point of our command interpreter
 """
@@ -25,19 +25,19 @@ class HBNBCommand(cmd.Cmd):
         "Review",
         "State"
     ]
-
+    
     def do_quit(self, args):
         """quit command to exit the program"""
         return True
-
+    
     def do_EOF(self, args):
         """EOF command to exit the program"""
         return True
-
+    
     def emptyargs(self):
         """empty args should not excecute anything"""
         pass
-
+    
     def do_create(self, args: List[str]):
         """creates a new instance of BaseModel saves it to json file and prints the id"""
         args = args.split()  # ['User'] -> User()
