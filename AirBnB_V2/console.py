@@ -16,28 +16,22 @@ from models.amenity import Amenity
 
 class HBNBCommand(cmd.Cmd):
     """command interpreter class"""
-    prompt = ("(hbnb) ")
-    __classes = [
-        "User",
-        "Amenity",
-        "City",
-        "Place",
-        "Review",
-        "State"
-    ]
-    
+
+    prompt = "(hbnb) "
+    __classes = ["User", "Amenity", "City", "Place", "Review", "State"]
+
     def do_quit(self, args):
         """quit command to exit the program"""
         return True
-    
+
     def do_EOF(self, args):
         """EOF command to exit the program"""
         return True
-    
+
     def emptyargs(self):
         """empty args should not excecute anything"""
         pass
-    
+
     def do_create(self, args: List[str]):
         """creates a new instance of BaseModel saves it to json file and prints the id"""
         args = args.split()  # ['User'] -> User()
@@ -49,11 +43,11 @@ class HBNBCommand(cmd.Cmd):
             print("**class name doesn't exist**")
         else:
             # create new instance of baseModel
-            new_instance = eval(args[0]+'()')
+            new_instance = eval(args[0] + "()")
             for arg in args[1:]:
-                if '=' in arg:
-                    key, value = arg.split('=')
-                    value = value.replace('_', ' ')
+                if "=" in arg:
+                    key, value = arg.split("=")
+                    value = value.replace("_", " ")
                     try:
                         value = int(value)
                     except ValueError:
@@ -116,9 +110,9 @@ class HBNBCommand(cmd.Cmd):
             models.storage.save()  # save changes to the json file
 
     def do_all(self, args):
-        """prints string representation of objects
-        """
-        my_dict = models.storage.all(
+        """prints string representation of objects"""
+        my_dict = (
+            models.storage.all()
         )  # retrieves all objects currently stored in the models.storage dictionary and assigns them to the my_dict variable.
         args = args.split()
         my_list = []
@@ -169,5 +163,5 @@ class HBNBCommand(cmd.Cmd):
         models.storage.save()  # save changes to json file
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     HBNBCommand().cmdloop()

@@ -16,15 +16,9 @@ from models.amenity import Amenity
 
 class HBNBCommand(cmd.Cmd):
     """command interpreter class"""
-    prompt = ("(hbnb) ")
-    __classes = [
-        "User",
-        "Amenity",
-        "City",
-        "Place",
-        "Review",
-        "State"
-    ]
+
+    prompt = "(hbnb) "
+    __classes = ["User", "Amenity", "City", "Place", "Review", "State"]
 
     def do_quit(self, args):
         """quit command to exit the program"""
@@ -49,11 +43,11 @@ class HBNBCommand(cmd.Cmd):
             print("**class name doesn't exist**")
         else:
             # create new instance of baseModel
-            new_instance = eval(args[0]+'()')
+            new_instance = eval(args[0] + "()")
             for arg in args[1:]:
-                if '=' in arg:
-                    key, value = arg.split('=')
-                    value = value.replace('_', ' ')
+                if "=" in arg:
+                    key, value = arg.split("=")
+                    value = value.replace("_", " ")
                     try:
                         value = int(value)
                     except ValueError:
@@ -115,9 +109,9 @@ class HBNBCommand(cmd.Cmd):
             models.storage.save()  # save changes to the json file
 
     def do_all(self, args):
-        """prints string representation of objects
-        """
-        my_dict = models.storage.all(
+        """prints string representation of objects"""
+        my_dict = (
+            models.storage.all()
         )  # retrieves all objects currently stored in the models.storage dictionary and assigns them to the my_dict variable.
         args = args.split()
         my_list = []
@@ -135,11 +129,11 @@ class HBNBCommand(cmd.Cmd):
                 print("**class doesn't exist**")
             else:
                 print(my_list)
-    
+
     def do_update(self, args):
         """
         updates an instance based on the class name and id by adding or updating attribute then save changes into json file
-        Usage: update <class name> <id> <attribute name> "<attribute value> 
+        Usage: update <class name> <id> <attribute name> "<attribute value>
         """
         args = args.split()
         if len(args) < 1:
@@ -168,5 +162,5 @@ class HBNBCommand(cmd.Cmd):
         models.storage.save()  # save changes to json file
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     HBNBCommand().cmdloop()
