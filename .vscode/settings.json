@@ -9,10 +9,10 @@
             "server": "localhost",
             "port": 3306,
             "driver": "MySQL",
-            "name": "mysqlconnection",
-            "database": "new_db",
+            "name": "sqlconnect",
             "username": "root",
-            "password": "Kamal256@"
+            "database": "new_db",
+            "password": "Kamal256$"
         },
         {
             "mysqlOptions": {
@@ -22,9 +22,9 @@
             "server": "localhost",
             "port": 3306,
             "driver": "MySQL",
-            "name": "sqlconnect",
-            "username": "hbnb_dev",
+            "name": "newsqlconnect",
             "database": "hbnb_dev_db",
+            "username": "hbnb_dev",
             "password": "Kamal256$"
         }
     ],
@@ -41,5 +41,9 @@
         "editor.formatOnPaste": true,
         "editor.formatOnSave": true,
         "editor.defaultFormatter": "ms-python.black-formatter"
-    }
+    },
+    "cSpell.words": [
+        "HBNB",
+        "sqlalchemy"
+    ]
 }

@@ -29,9 +29,9 @@ place_amenity = Table(
 
 class Place(BaseModel, Base):
     """A place to stay"""
-
+    
     __tablename__ = "places"
-
+    
     if getenv("HBNB_TYPE_STORAGE") == "db":
         city_id = Column(String(60), ForeignKey("cities.id"), nullable=False)
         user_id = Column(String(60), ForeignKey("users.id"), nullable=False)
@@ -44,18 +44,18 @@ class Place(BaseModel, Base):
         latitude = Column(Float, nullable=True)
         longitude = Column(Float, nullable=True)
         amenity_ids = []
-
+        
         user = relationship("User", back_populates="places")
         cities = relationship("City", back_populates="places")
         reviews = relationship("Review", back_populates="place")
-
+        
         amenities = relationship(
             "Amenity",
             secondary=place_amenity,
             viewonly=False,
             back_populates="place_amenities",
         )
-
+    
     else:
         city_id = ""
         user_id = ""
@@ -68,7 +68,7 @@ class Place(BaseModel, Base):
         latitude = 0.0
         longitude = 0.0
         amenity_ids = []
-
+        
         @property
         def reviews(self):
             """
@@ -77,13 +77,25 @@ class Place(BaseModel, Base):
             """
             from models import storage
             from models.review import Review
-
+            
             obj = storage.all()
             lst = list(obj)
             new = []
-
+            
             for i in lst:
                 if "Review" in i:
                     temp = Review(obj[i])
                     if temp.place_id == self.id:
                         new.append(temp)
+                        
+    # @property
+    # def reviews(self):
+    #     """
+    #     Returns a list of review instances associated with the current place.
+    #     """
+    #     from models import storage
+    #     from models.review import Review
+    
+    #     reviews_dict = storage.get(Review, place_id=self.id)
+    #     return list(reviews_dict.values()) if reviews_dict else []
+
